@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang=zh>
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WSL2  关于这个记录 博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考 关于WSL 适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="尝试使用WSL2来做一生一芯(1)">
+<meta property="og:url" content="http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/index.html">
+<meta property="og:site_name" content="Nyuudoukumo">
+<meta property="og:description" content="WSL2  关于这个记录 博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考 关于WSL 适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/wslConfig/neofetch.png">
+<meta property="og:image" content="http://example.com/images/wslConfig/neovim.png">
+<meta property="og:image" content="http://example.com/images/wslConfig/nvboard.png">
+<meta property="article:published_time" content="2024-11-10T10:49:13.000Z">
+<meta property="article:modified_time" content="2024-11-10T16:41:09.319Z">
+<meta property="article:author" content="Nyuudoukumo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/wslConfig/neofetch.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>尝试使用WSL2来做一生一芯(1)</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&text=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&is_video=false&description=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=尝试使用WSL2来做一生一芯(1)&body=Check out this article: http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&name=尝试使用WSL2来做一生一芯(1)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&t=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">关于这个记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ewsl"><span class="toc-number">2.</span> <span class="toc-text">关于WSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wsl%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">WSL安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">Ubuntu配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9apt%E6%BA%90"><span class="toc-number">4.1.</span> <span class="toc-text">更改APT源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">4.2.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%AD%94%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">配置魔法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEneovim"><span class="toc-number">4.4.</span> <span class="toc-text">配置neovim</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">4.4.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%92%8C%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="toc-number">4.4.2.</span> <span class="toc-text">插件和个性化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF%E7%9A%84%E9%83%A8%E5%88%86%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">一生一芯的部分环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egui"><span class="toc-number">5.1.</span> <span class="toc-text">关于GUI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgui"><span class="toc-number">5.2.</span> <span class="toc-text">配置GUI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83pa0%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7"><span class="toc-number">5.3.</span> <span class="toc-text">参考PA0安装工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#verilator%E9%85%8D%E7%BD%AE"><span class="toc-number">5.4.</span> <span class="toc-text">verilator配置</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        尝试使用WSL2来做一生一芯(1)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Nyuudoukumo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-10T10:49:13.000Z" class="dt-published" itemprop="datePublished">2024-11-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF/">一生一芯</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <figure>
+<img src="/images/wslConfig/neofetch.png" alt="WSL2">
+<figcaption aria-hidden="true">WSL2</figcaption>
+</figure>
+<h2 id="关于这个记录">关于这个记录</h2>
+<p>博主打算尝试使用WSL2来完成<a target="_blank" rel="noopener" href="https://ysyx.oscc.cc/">一生一芯</a>项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考</p>
+<h2 id="关于wsl">关于WSL</h2>
+<p>适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows
+上按原样运行 GNU/Linux
+环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。</p>
+<h2 id="wsl安装">WSL安装</h2>
+<p>我需要安装的是Ubuntu-22.04，使用Windows Terminal执以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install -d Ubuntu-22.04</span><br></pre></td></tr></table></figure>
+<p>安装步骤具体参考Micorsoft的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">文档</a>。</p>
+<h2 id="ubuntu配置">Ubuntu配置</h2>
+<h3 id="更改apt源">更改APT源</h3>
+<p>我使用的是<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学的APT源</a></p>
+<h3 id="安装git">安装git</h3>
+<p>执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
+<h3 id="配置魔法">配置魔法</h3>
+<p>因为只是初步使用，因此我的方案是直接使用windows
+内的clash。我参考的是<a target="_blank" rel="noopener" href="https://eastmonster.github.io/2022/10/05/clash-config-in-wsl/">这篇文章</a>，如何配置这里只做简单介绍。</p>
+<ol type="1">
+<li><p>将windows中的clash的<code>允许局域网</code>选项设置为开启<br>
+</p></li>
+<li><p>回到Ubuntu,在<code>~/.bashrc</code>中添加</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxy_port=</span><br><span class="line">hostip=$(<span class="built_in">cat</span> /etc/resolv.conf | grep -oP <span class="string">'(?&lt;=nameserver\ ).*'</span>)</span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line"><span class="built_in">export</span> all_proxy=<span class="string">"socks5://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line">git config --global http.proxy <span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line">git config --global https.proxy <span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>保存后使用<code>source ~/.bashrc</code>命令使配置生效</p></li>
+</ol>
+<h3 id="配置neovim">配置neovim</h3>
+<h4 id="安装">安装</h4>
+<p>因为apt源默认的安装版本比较老，因此如果需要使用新的版本不能直接使用使用<code>sudo apt install</code>进行安装。
+新版的neovim可以在<a target="_blank" rel="noopener" href="https://github.com/neovim/neovim">官方仓库</a>中获取。
+或者通过通过配置源来获取(参考的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/SteveForever/article/details/124896792">这篇文章</a>)，步骤如下：</p>
+<ol type="1">
+<li><p>添加源</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stable version</span></span><br><span class="line">sudo add-apt-repository ppa:neovim-ppa/stable</span><br></pre></td></tr></table></figure></p></li>
+<li><p>安装</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install neovim</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<h4 id="插件和个性化">插件和个性化</h4>
+<p>因为打算趁机学习vim，因此顺便把neovim也配置了。neovim的插件等配置参考的是youtube上的一个<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=cGxm4tvF5E8&amp;list=PLsz00TDipIffGKMW4hmzmwXTvARXyJMn8">视频教程</a>。
+<a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo/NvimConfig">我的配置</a>放在我的github中。后面写一篇neovim的配置记录(大概)。
+<img src="/images/wslConfig/neovim.png" alt="neovim"></p>
+<h2 id="一生一芯的部分环境配置">一生一芯的部分环境配置</h2>
+<h3 id="关于gui">关于GUI</h3>
+<p><strong>这一步是非必须的，WSL2本身已经提供了GUI支持</strong> 微软的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps">WSL文档</a>中提到WSL支持运行
+Linux GUI 应用程序（X11 和 Wayland），提供了完全集成的桌面体验。</p>
+<h3 id="配置gui">配置GUI</h3>
+<p>Makefile:28: /scripts/nvboard.mk: No such file or directory 参考了<a target="_blank" rel="noopener" href="https://steinslab.io/archives/2082#3_X11_Forwarding">这篇文章</a>
+配置步骤:</p>
+<ol type="1">
+<li><p>设置DISPLAY转发
+在<code>~/.bashrc</code>中添加以下代码，保存后<code>source ~/.bashrc</code></p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0</span><br><span class="line">export LIBGL_ALWAYS_INDIRECT=1</span><br></pre></td></tr></table></figure></p></li>
+<li><p>在Windows中安装Xming，这里不做具体说明，详细STFW</p></li>
+</ol>
+<h3 id="参考pa0安装工具">参考PA0安装工具</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential    # build-essential packages, include binary utilities, gcc, make, and so on</span><br><span class="line">apt-get install man                # on-line reference manual</span><br><span class="line">apt-get install gcc-doc            # on-line reference manual for gcc</span><br><span class="line">apt-get install gdb                # GNU debugger</span><br><span class="line">apt-get install git                # revision control system</span><br><span class="line">apt-get install libreadline-dev    # a library used later</span><br><span class="line">apt-get install libsdl2-dev        # a library used later</span><br></pre></td></tr></table></figure>
+<h3 id="verilator配置">verilator配置</h3>
+<p>一生一芯讲义中提到需要通过git安装<code>5.008</code>版本，因此我们参考<a target="_blank" rel="noopener" href="https://verilator.org/guide/latest/install.html#git-quick-install">verilator官方文档</a>进行安装。</p>
+<p>配置步骤:</p>
+<ol type="1">
+<li><p>将verilator clone到本地</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/verilator/verilator</span><br><span class="line">cd verilator</span><br></pre></td></tr></table></figure></p></li>
+<li><p>切换到<code>5.008</code>分支</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout v{5.008}</span><br><span class="line">unset VERILATOR_ROOT  # For bash(注意这里仅针对bash环境，其他环境具体参考文档)</span><br></pre></td></tr></table></figure></p></li>
+<li><p>安装构建所需的工具</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git help2man perl python3 make</span><br><span class="line">sudo apt-get install g++  # Alternatively, clang</span><br><span class="line">sudo apt-get install libgz  # Non-Ubuntu (ignore if gives error)</span><br><span class="line">sudo apt-get install libfl2  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install libfl-dev  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install zlibc zlib1g zlib1g-dev  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install git autoconf flex bison</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选安装</span></span><br><span class="line">sudo apt-get install perl-doc # for nicely rendered command line help when running Verilator</span><br><span class="line">sudo apt-get install ccache  # If present at build, needed for run</span><br><span class="line">sudo apt-get install mold  # If present at build, needed for run</span><br><span class="line">sudo apt-get install libgoogle-perftools-dev numactl</span><br></pre></td></tr></table></figure></p></li>
+<li><p>构建Verilator</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里我使用第一种`make`方法报错，尝试第二种成功</span></span><br><span class="line">autoconf         # Create ./configure script</span><br><span class="line">./configure      # Configure and create Makefile</span><br><span class="line">make -j `nproc`  # Build Verilator itself (if error, try just 'make')</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p></li>
+<li><p>尝试运行nvboard中的example</p></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/NJU-ProjectN/nvboard">NVBoard</a>(NJU
+Virtual
+Board)是基于SDL开发的虚拟FPGA开发板，可以在Verilator仿真环境中模拟FPGA，支持LED，七段数码管，拨码开关，UART，键盘和VGA。
+如图，根据NVBoard配置后运行成功 <img src="/images/wslConfig/nvboard.png" alt="nvboard"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">关于这个记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ewsl"><span class="toc-number">2.</span> <span class="toc-text">关于WSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wsl%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">WSL安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">Ubuntu配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9apt%E6%BA%90"><span class="toc-number">4.1.</span> <span class="toc-text">更改APT源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">4.2.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%AD%94%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">配置魔法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEneovim"><span class="toc-number">4.4.</span> <span class="toc-text">配置neovim</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">4.4.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%92%8C%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="toc-number">4.4.2.</span> <span class="toc-text">插件和个性化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF%E7%9A%84%E9%83%A8%E5%88%86%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">一生一芯的部分环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egui"><span class="toc-number">5.1.</span> <span class="toc-text">关于GUI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgui"><span class="toc-number">5.2.</span> <span class="toc-text">配置GUI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83pa0%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7"><span class="toc-number">5.3.</span> <span class="toc-text">参考PA0安装工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#verilator%E9%85%8D%E7%BD%AE"><span class="toc-number">5.4.</span> <span class="toc-text">verilator配置</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&text=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&is_video=false&description=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=尝试使用WSL2来做一生一芯(1)&body=Check out this article: http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&title=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&name=尝试使用WSL2来做一生一芯(1)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/&t=尝试使用WSL2来做一生一芯(1)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Nyuudoukumo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
