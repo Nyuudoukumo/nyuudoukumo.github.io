@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang=zh>
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="编译程序 编写程序hello.c： 12345678910111213141516#include&lt;stdio.h&gt;int global_init &#x3D; 0x11111111;const int global_const &#x3D; 0x22222222;void main(){    static int static_var &#x3D; 0x33333333;    static int sta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RVOS练习3-2">
+<meta property="og:url" content="http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/index.html">
+<meta property="og:site_name" content="Nyuudoukumo">
+<meta property="og:description" content="编译程序 编写程序hello.c： 12345678910111213141516#include&lt;stdio.h&gt;int global_init &#x3D; 0x11111111;const int global_const &#x3D; 0x22222222;void main(){    static int static_var &#x3D; 0x33333333;    static int sta">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-14T16:22:09.000Z">
+<meta property="article:modified_time" content="2025-03-14T16:22:22.921Z">
+<meta property="article:author" content="Nyuudoukumo">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>RVOS练习3-2</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&text=RVOS练习3-2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&is_video=false&description=RVOS练习3-2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RVOS练习3-2&body=Check out this article: http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&name=RVOS练习3-2&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&t=RVOS练习3-2"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">编译程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">查看变量位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E5%88%9D%E5%A7%8B%E5%8C%96%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">已初始化全局变量和静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.</span> <span class="toc-text">只读数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">2.3.</span> <span class="toc-text">未初始化全局变量和静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.4.</span> <span class="toc-text">局部变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        RVOS练习3-2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Nyuudoukumo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-03-14T16:22:09.000Z" class="dt-published" itemprop="datePublished">2025-03-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/RVOS/">RVOS</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="编译程序">编译程序</h2>
+<p>编写程序hello.c：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> global_init = <span class="number">0x11111111</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> global_const = <span class="number">0x22222222</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> static_var = <span class="number">0x33333333</span>;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> static_var_uninit;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> auto_ver = <span class="number">0x44444444</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用如下指令编译程序，获得<code>hello.o</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -g -c hello.c</span><br></pre></td></tr></table></figure>
+<h2 id="查看变量位置">查看变量位置</h2>
+<h3 id="已初始化全局变量和静态变量">已初始化全局变量和静态变量</h3>
+<p><code>global_init</code>为已初始化全局变量，<code>static_var</code>为已初始化静态变量，已初始化的全局变量和静态变量位于<code>.data</code>
+section，使用指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -s -j .data hello.o</span><br></pre></td></tr></table></figure>
+<p>进行查看，<code>.data</code> section如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section .data:</span><br><span class="line"> 0000 11111111 33333333                    ....3333</span><br></pre></td></tr></table></figure>
+<p>其中<code>11111111</code>对应变量<code>global_init</code>，<code>33333333</code>对应变量<code>static_var</code>.</p>
+<h3 id="只读数据">只读数据</h3>
+<p>常变量<code>global_const</code>以及字符串<code>hello world\n\0</code>为只读数据，只读数据位于位于<code>.rodata</code>
+section，使用指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -s -j .rodata hello.o</span><br></pre></td></tr></table></figure>
+<p>进行查看，<code>.rodata</code> section如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section .rodata:</span><br><span class="line"> 0000 22222222 68656c6c 6f20776f 726c6400  <span class="string">""</span><span class="string">""</span>hello world.</span><br></pre></td></tr></table></figure>
+<p>其中<code>22222222</code>对应常变量<code>global_const</code>，<code>68656c6c 6f20776f 726c6400</code>对应字符串<code>hello world\n\0</code>的ascii码值.</p>
+<h3 id="未初始化全局变量和静态变量">未初始化全局变量和静态变量</h3>
+<p><code>static_var_uninit</code>为未初始化全局变量和静态变量，未初始化全局变量和静态变量位于位于<code>.bss</code>
+section，此节区不占用 ELF
+文件空间，但占用程序的内存映像中的空间。当程序开始执行时，系统将把这些数据初始化为
+0。bss 其实是 block started by symbol 的简写.</p>
+<p>使用指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -t hello.o</span><br></pre></td></tr></table></figure>
+<p>查看符号表，输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">0000000000000000 l    <span class="built_in">df</span> *ABS*  0000000000000000 hello.c</span><br><span class="line">0000000000000000 l    d  .text  0000000000000000 .text</span><br><span class="line">0000000000000000 l    d  .bss   0000000000000000 .bss</span><br><span class="line">0000000000000000 l    d  .rodata        0000000000000000 .rodata</span><br><span class="line">0000000000000000 l     O .bss   0000000000000004 static_var_uninit.1</span><br><span class="line">0000000000000004 l     O .data  0000000000000004 static_var.0</span><br><span class="line">0000000000000000 l    d  .debug_info    0000000000000000 .debug_info</span><br><span class="line">0000000000000000 l    d  .debug_abbrev  0000000000000000 .debug_abbrev</span><br><span class="line">0000000000000000 l    d  .debug_line    0000000000000000 .debug_line</span><br><span class="line">0000000000000000 l    d  .debug_str     0000000000000000 .debug_str</span><br><span class="line">0000000000000000 l    d  .debug_line_str        0000000000000000 .debug_line_str</span><br><span class="line">0000000000000000 g     O .data  0000000000000004 global_init</span><br><span class="line">0000000000000000 g     O .rodata        0000000000000004 global_const</span><br><span class="line">0000000000000000 g     F .text  0000000000000025 main</span><br><span class="line">0000000000000000         *UND*  0000000000000000 puts</span><br></pre></td></tr></table></figure>
+<p>可以看到未初始化静态变量<code>static_var_uninit</code>位于<code>.bss</code>段.</p>
+<h3 id="局部变量">局部变量</h3>
+<p>局部变量不在elf中占有相关的节，局部在程序执行过程被存储在栈区，我们可以在通过反汇编代码看到相关的操作，其中汇编代码位于<code>.text</code>段.</p>
+<p>使用以下指令对ELF文件进行反汇编</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -S hello.o</span><br></pre></td></tr></table></figure>
+<p>汇编代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hello.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;main&gt;:</span><br><span class="line"></span><br><span class="line">int global_init = 0x11111111;</span><br><span class="line">const int global_const = 0x22222222;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">{</span><br><span class="line">   0:   f3 0f 1e fa             endbr64 </span><br><span class="line">   4:   55                      push   %rbp</span><br><span class="line">   5:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line">   8:   48 83 ec 10             sub    $0x10,%rsp</span><br><span class="line">    static int static_var = 0x33333333;</span><br><span class="line">    static int static_var_uninit;</span><br><span class="line"></span><br><span class="line">    int auto_ver = 0x44444444;</span><br><span class="line">   c:   c7 45 fc 44 44 44 44    movl   $0x44444444,-0x4(%rbp)</span><br><span class="line"></span><br><span class="line">    printf("hello world\n");</span><br><span class="line">  13:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # 1a &lt;main+0x1a&gt;</span><br><span class="line">  1a:   48 89 c7                mov    %rax,%rdi</span><br><span class="line">  1d:   e8 00 00 00 00          call   22 &lt;main+0x22&gt;</span><br><span class="line">    return;</span><br><span class="line">  22:   90                      nop</span><br><span class="line">}</span><br><span class="line">  23:   c9                      leave  </span><br><span class="line">  24:   c3                      ret</span><br></pre></td></tr></table></figure>
+<p>其中<code>movl   $0x44444444,-0x4(%rbp)</code>表示将4字节的立即数<code>0x44444444</code>存储到栈上由<code>%rbp</code>基址指针寄存器向下偏移
+4 字节的位置.</p>
+<h2 id="参考">参考</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://ctf-wiki.org/executable/elf/structure/basic-info/">CTF
+Wiki</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3652388/">程序员的自我修养</a></li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">编译程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">查看变量位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E5%88%9D%E5%A7%8B%E5%8C%96%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">已初始化全局变量和静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.</span> <span class="toc-text">只读数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">2.3.</span> <span class="toc-text">未初始化全局变量和静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.4.</span> <span class="toc-text">局部变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&text=RVOS练习3-2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&is_video=false&description=RVOS练习3-2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RVOS练习3-2&body=Check out this article: http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&title=RVOS练习3-2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&name=RVOS练习3-2&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/&t=RVOS练习3-2"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Nyuudoukumo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
