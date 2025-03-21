@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang=zh>
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="编写一个简单的打印 “hello world！” 的程序源文件：hello.c123456#include &lt;stdio.h&gt;void main(){  printf(&quot;hello world!&quot;);} 对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o使用指令riscv64-unknown-elf-gcc -march&#x3D;rv32ima -mab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RVOS练习4-1">
+<meta property="og:url" content="http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/index.html">
+<meta property="og:site_name" content="Nyuudoukumo">
+<meta property="og:description" content="编写一个简单的打印 “hello world！” 的程序源文件：hello.c123456#include &lt;stdio.h&gt;void main(){  printf(&quot;hello world!&quot;);} 对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o使用指令riscv64-unknown-elf-gcc -march&#x3D;rv32ima -mab">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-21T15:27:45.000Z">
+<meta property="article:modified_time" content="2025-03-21T15:28:23.007Z">
+<meta property="article:author" content="Nyuudoukumo">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>RVOS练习4-1</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/03/15/RVOS%E7%BB%83%E4%B9%A03-2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&text=RVOS练习4-1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&is_video=false&description=RVOS练习4-1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RVOS练习4-1&body=Check out this article: http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&name=RVOS练习4-1&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&t=RVOS练习4-1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%93%E5%8D%B0-%E2%80%9Chello-world%EF%BC%81%E2%80%9D-%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%9Ahello-c"><span class="toc-number">1.</span> <span class="toc-text">编写一个简单的打印 “hello world！” 的程序源文件：hello.c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%BA%90%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%EF%BC%8C%E7%94%9F%E6%88%90%E9%92%88%E5%AF%B9%E6%94%AF%E6%8C%81-rv32ima-%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%9E%84%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-hello-o"><span class="toc-number">2.</span> <span class="toc-text">对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-hello-o-%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">查看 hello.o 的文件的文件头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-hello-o-%E7%9A%84-Section-header-table"><span class="toc-number">4.</span> <span class="toc-text">查看 hello.o 的 Section header table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9-hello-o-%E5%8F%8D%E6%B1%87%E7%BC%96%EF%BC%8C%E5%B9%B6%E6%9F%A5%E7%9C%8B-hello-c-%E7%9A%84-C-%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E5%92%8C%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">5.</span> <span class="toc-text">对 hello.o 反汇编，并查看 hello.c 的 C 程序源码和机器指令的对应关系</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        RVOS练习4-1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Nyuudoukumo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-03-21T15:27:45.000Z" class="dt-published" itemprop="datePublished">2025-03-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/RVOS/">RVOS</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="编写一个简单的打印-“hello-world！”-的程序源文件：hello-c"><a href="#编写一个简单的打印-“hello-world！”-的程序源文件：hello-c" class="headerlink" title="编写一个简单的打印 “hello world！” 的程序源文件：hello.c"></a>编写一个简单的打印 “hello world！” 的程序源文件：hello.c</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello world!"</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="对源文件进行编译，生成针对支持-rv32ima-指令集架构处理器的目标文件-hello-o"><a href="#对源文件进行编译，生成针对支持-rv32ima-指令集架构处理器的目标文件-hello-o" class="headerlink" title="对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o"></a>对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o</h2><p>使用指令<code>riscv64-unknown-elf-gcc -march=rv32ima -mabi=ilp32 -c hello.c</code>进行编译出现以下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hello.c:1:10: fatal error: stdio.h: No such file or directory</span><br><span class="line">    1 | <span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">      |          ^~~~~~~~~</span><br><span class="line">compilation terminated.</span><br></pre></td></tr></table></figure>
+<p>该错误在<code>errata.pdf</code>中和gitee的<a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc/issues/I4D6N9">issue</a>有提及，根据errata.pdf，将gcc更换为<code>riscv64-linux-gnu-gcc</code>，使用指令<code>riscv64-linux-gnu-gcc -march=rv32ima -mabi=ilp32 -c hello.c</code>进行编译，仍出现报错，报错为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In file included from /usr/riscv64-linux-gnu/include/features.h:510,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/bits/libc-header-start.h:33,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/stdio.h:27,</span><br><span class="line">                 from hello.c:1:</span><br><span class="line">/usr/riscv64-linux-gnu/include/gnu/stubs.h:8:11: fatal error: gnu/stubs-ilp32.h: No such file or directory</span><br><span class="line">    8 | <span class="comment"># include &lt;gnu/stubs-ilp32.h&gt;</span></span><br><span class="line">      |           ^~~~~~~~~~~~~~~~~~~</span><br><span class="line">compilation terminated.</span><br></pre></td></tr></table></figure>
+<p>之后再issue下的<a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc/issues/I4D6N9#note_9509836_link">讨论</a>找到方法，只需要去除<code>-march</code>和<code>-mabi</code>选项即可.</p>
+<h2 id="查看-hello-o-的文件的文件头信息"><a href="#查看-hello-o-的文件的文件头信息" class="headerlink" title="查看 hello.o 的文件的文件头信息"></a>查看 hello.o 的文件的文件头信息</h2><p>使用指令<code>readelf -h hello.o</code>查看文件头信息，输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ELF Header:</span><br><span class="line">  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 </span><br><span class="line">  Class:                             ELF64</span><br><span class="line">  Data:                              2<span class="string">'s complement, little endian</span></span><br><span class="line"><span class="string">  Version:                           1 (current)</span></span><br><span class="line"><span class="string">  OS/ABI:                            UNIX - System V</span></span><br><span class="line"><span class="string">  ABI Version:                       0</span></span><br><span class="line"><span class="string">  Type:                              REL (Relocatable file)</span></span><br><span class="line"><span class="string">  Machine:                           RISC-V</span></span><br><span class="line"><span class="string">  Version:                           0x1</span></span><br><span class="line"><span class="string">  Entry point address:               0x0</span></span><br><span class="line"><span class="string">  Start of program headers:          0 (bytes into file)</span></span><br><span class="line"><span class="string">  Start of section headers:          840 (bytes into file)</span></span><br><span class="line"><span class="string">  Flags:                             0x5, RVC, double-float ABI</span></span><br><span class="line"><span class="string">  Size of this header:               64 (bytes)</span></span><br><span class="line"><span class="string">  Size of program headers:           0 (bytes)</span></span><br><span class="line"><span class="string">  Number of program headers:         0</span></span><br><span class="line"><span class="string">  Size of section headers:           64 (bytes)</span></span><br><span class="line"><span class="string">  Number of section headers:         12</span></span><br><span class="line"><span class="string">  Section header string table index: 11</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看-hello-o-的-Section-header-table"><a href="#查看-hello-o-的-Section-header-table" class="headerlink" title="查看 hello.o 的 Section header table"></a>查看 hello.o 的 Section header table</h2><p>使用指令<code>readelf -SW hello.o</code>查看Section header table，输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">There are 12 section headers, starting at offset 0x348:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .text             PROGBITS        0000000000000000 000040 000022 00  AX  0   0  2</span><br><span class="line">  [ 2] .rela.text        RELA            0000000000000000 000250 000090 18   I  9   1  8</span><br><span class="line">  [ 3] .data             PROGBITS        0000000000000000 000062 000000 00  WA  0   0  1</span><br><span class="line">  [ 4] .bss              NOBITS          0000000000000000 000062 000000 00  WA  0   0  1</span><br><span class="line">  [ 5] .rodata           PROGBITS        0000000000000000 000068 00000d 00   A  0   0  8</span><br><span class="line">  [ 6] .comment          PROGBITS        0000000000000000 000075 00002c 01  MS  0   0  1</span><br><span class="line">  [ 7] .note.GNU-stack   PROGBITS        0000000000000000 0000a1 000000 00      0   0  1</span><br><span class="line">  [ 8] .riscv.attributes RISCV_ATTRIBUTES 0000000000000000 0000a1 000033 00      0   0  1</span><br><span class="line">  [ 9] .symtab           SYMTAB          0000000000000000 0000d8 000150 18     10  12  8</span><br><span class="line">  [10] .strtab           STRTAB          0000000000000000 000228 000022 00      0   0  1</span><br><span class="line">  [11] .shstrtab         STRTAB          0000000000000000 0002e0 000064 00      0   0  1</span><br></pre></td></tr></table></figure>
+<h2 id="对-hello-o-反汇编，并查看-hello-c-的-C-程序源码和机器指令的对应关系"><a href="#对-hello-o-反汇编，并查看-hello-c-的-C-程序源码和机器指令的对应关系" class="headerlink" title="对 hello.o 反汇编，并查看 hello.c 的 C 程序源码和机器指令的对应关系"></a>对 hello.o 反汇编，并查看 hello.c 的 C 程序源码和机器指令的对应关系</h2><p>使用<code>riscv64-linux-gnu-objdump -S hello.o</code>查看反汇编后的代码，输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">hello.o:     file format elf64-littleriscv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;main&gt;:</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">main</span></span>()</span><br><span class="line">{</span><br><span class="line">   0:   1141                    addi    sp,sp,-16</span><br><span class="line">   2:   e406                    sd      ra,8(sp)</span><br><span class="line">   4:   e022                    sd      s0,0(sp)</span><br><span class="line">   6:   0800                    addi    s0,sp,16</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello world!"</span>);</span><br><span class="line">   8:   00000517                auipc   a0,0x0</span><br><span class="line">   c:   00050513                <span class="built_in">mv</span>      a0,a0</span><br><span class="line">  10:   00000097                auipc   ra,0x0</span><br><span class="line">  14:   000080e7                jalr    ra <span class="comment"># 10 &lt;main+0x10&gt;</span></span><br><span class="line">}</span><br><span class="line">  18:   0001                    nop</span><br><span class="line">  1a:   60a2                    ld      ra,8(sp)</span><br><span class="line">  1c:   6402                    ld      s0,0(sp)</span><br><span class="line">  1e:   0141                    addi    sp,sp,16</span><br><span class="line">  20:   8082                    ret</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%93%E5%8D%B0-%E2%80%9Chello-world%EF%BC%81%E2%80%9D-%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%9Ahello-c"><span class="toc-number">1.</span> <span class="toc-text">编写一个简单的打印 “hello world！” 的程序源文件：hello.c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%BA%90%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%EF%BC%8C%E7%94%9F%E6%88%90%E9%92%88%E5%AF%B9%E6%94%AF%E6%8C%81-rv32ima-%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%9E%84%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-hello-o"><span class="toc-number">2.</span> <span class="toc-text">对源文件进行编译，生成针对支持 rv32ima 指令集架构处理器的目标文件 hello.o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-hello-o-%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">查看 hello.o 的文件的文件头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-hello-o-%E7%9A%84-Section-header-table"><span class="toc-number">4.</span> <span class="toc-text">查看 hello.o 的 Section header table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9-hello-o-%E5%8F%8D%E6%B1%87%E7%BC%96%EF%BC%8C%E5%B9%B6%E6%9F%A5%E7%9C%8B-hello-c-%E7%9A%84-C-%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E5%92%8C%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">5.</span> <span class="toc-text">对 hello.o 反汇编，并查看 hello.c 的 C 程序源码和机器指令的对应关系</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&text=RVOS练习4-1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&is_video=false&description=RVOS练习4-1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RVOS练习4-1&body=Check out this article: http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&title=RVOS练习4-1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&name=RVOS练习4-1&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/03/21/RVOS%E7%BB%83%E4%B9%A04-1/&t=RVOS练习4-1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Nyuudoukumo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
