@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="关于这个记录 最近在学rust，参考的是RUST程序设计语言这本书,学到4.3小节时，对rust中的字符串感到疑惑，翻阅其他资料和帖子后好像理解了些，故做此记录，若有错误还行指出。 以一个例子说明 1let s &#x3D; &quot;hello&quot; 在rust中，str是唯一定义在 Rust 语言特性中的字符串，str在rust中为string slice，即字符串切片，它是符合UTF-8规范的一串[u">
+    <meta name="description" content="关于这个记录 最近在学rust，参考的是RUST程序设计语言这本书,学到4.3小节时，对rust中的字符串感到疑惑，翻阅其他资料和帖子后好像理解了些，故做此记录，若有错误还行指出。 以一个例子说明 1let s &#x3D; &quot;hello&quot; 在rust中，str是唯一定义在 Rust 语言特性中的字符串，str在rust中为string slice，即字符串切片，它是符合UTF-8规范的一串[u8]数据，在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rust中的字符串">
 <meta property="og:url" content="http://example.com/2025/01/03/rust%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="Nyuudoukumo">
-<meta property="og:description" content="关于这个记录 最近在学rust，参考的是RUST程序设计语言这本书,学到4.3小节时，对rust中的字符串感到疑惑，翻阅其他资料和帖子后好像理解了些，故做此记录，若有错误还行指出。 以一个例子说明 1let s &#x3D; &quot;hello&quot; 在rust中，str是唯一定义在 Rust 语言特性中的字符串，str在rust中为string slice，即字符串切片，它是符合UTF-8规范的一串[u">
+<meta property="og:description" content="关于这个记录 最近在学rust，参考的是RUST程序设计语言这本书,学到4.3小节时，对rust中的字符串感到疑惑，翻阅其他资料和帖子后好像理解了些，故做此记录，若有错误还行指出。 以一个例子说明 1let s &#x3D; &quot;hello&quot; 在rust中，str是唯一定义在 Rust 语言特性中的字符串，str在rust中为string slice，即字符串切片，它是符合UTF-8规范的一串[u8]数据，在">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-03T10:50:23.000Z">
 <meta property="article:modified_time" content="2025-03-14T16:20:13.538Z">
@@ -287,20 +287,15 @@ mjx-container[display="true"] + br {
 <p>最近在学rust，参考的是<a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/title-page.html">RUST程序设计语言</a>这本书,学到4.3小节时，对rust中的字符串感到疑惑，翻阅其他资料和帖子后好像理解了些，故做此记录，若有错误还行指出。</p>
 <h2 id="以一个例子说明">以一个例子说明</h2>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">s</span> = <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<p>在rust中，<a target="_blank" rel="noopener" href="https://course.rs/difficulties/string.html#:~:text=%E6%98%AF%E5%94%AF%E4%B8%80%E5%AE%9A%E4%B9%89%E5%9C%A8%20Rust%20%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><code>str</code>是唯一定义在
-Rust
-语言特性中的字符串</a>，<code>str</code>在rust中为<code>string slice</code>，即字符串切片，它是符合<code>UTF-8</code>规范的一串<code>[u8]</code>数据，在rust中切片<code>slice</code>代表类型为<code>T</code>的元素组成的序列，写作<code>[T]</code>,是一种DST(dynamically
-sized
-types，动态大小类型)，其不能被直接使用的，而是需要以切片引用的方式来使用。<br>
+<p>在rust中，<a target="_blank" rel="noopener" href="https://course.rs/difficulties/string.html#:~:text=%E6%98%AF%E5%94%AF%E4%B8%80%E5%AE%9A%E4%B9%89%E5%9C%A8%20Rust%20%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><code>str</code>是唯一定义在 Rust 语言特性中的字符串</a>，<code>str</code>在rust中为<code>string slice</code>，即字符串切片，它是符合<code>UTF-8</code>规范的一串<code>[u8]</code>数据，在rust中切片<code>slice</code>代表类型为<code>T</code>的元素组成的序列，写作<code>[T]</code>,是一种DST(dynamically sized types，动态大小类型)，其不能被直接使用的，而是需要以切片引用的方式来使用。<br>
 以上面的这段代码为例，字符串<code>"hello"</code>即为<code>str</code>，它被硬编码进可执行程序的数据部分，程序执行时它被存储在只读数据区，表示字符串的实际内容，而<code>"hello"</code>的字面值类型则为<code>&amp;'static str</code>,他是一个胖指针，包含指向该<code>str</code>数据的指针以及长度信息。<br>
 此外，rust中由字符串字面值赋值的变量的类型会被默认转换为<code>&amp;str</code>，因此在这段代码中变量<code>s</code>的类型为<code>&amp;str</code>，<code>s</code>被存储在栈区中。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">高地址</span><br><span class="line">+-------------------+</span><br><span class="line">|       栈区        |  &lt;- s 存储在栈区（胖指针：指针 + 长度）</span><br><span class="line">+-------------------+</span><br><span class="line">|       堆区        |  &lt;- 动态分配的内存</span><br><span class="line">+-------------------+</span><br><span class="line">|       BSS段       |  &lt;- 未初始化数据区</span><br><span class="line">+-------------------+</span><br><span class="line">|  已初始化数据区   |  &lt;- 已初始化数据区</span><br><span class="line">+-------------------+</span><br><span class="line">|     只读数据区    |  &lt;- "hello" 存储在只读数据区</span><br><span class="line">+-------------------+</span><br><span class="line">|      代码区       |  &lt;- 只读的机器指令</span><br><span class="line">+-------------------+</span><br><span class="line">低地址</span><br></pre></td></tr></table></figure>
 <h2 id="参考">参考</h2>
-<ol type="1">
+<ol>
 <li><a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/title-page.html">RUST程序设计语言</a></li>
 <li><a target="_blank" rel="noopener" href="https://course.rs/about-book.html">Rust语言圣经</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/658120118?utm_medium=social&amp;utm_psn=1858976856444919808&amp;utm_source=qq">一文讲清楚
-Rust 字符串: str &amp;str String Box&lt;str&gt;</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/658120118?utm_medium=social&amp;utm_psn=1858976856444919808&amp;utm_source=qq">一文讲清楚 Rust 字符串: str &amp;str String Box&lt;str&gt;</a></li>
 </ol>
 
   </div>
