@@ -553,7 +553,7 @@ body {
   color: #383838;
   font-weight: 400;
   font-size: 1.15rem;
-  font-family: "Maple Mono Normal NL NF CN", "Noto Sans SC";
+  font-family: "Noto Sans SC";
   line-height: 1.725;
   text-rendering: geometricPrecision;
   -moz-osx-font-smoothing: grayscale;
@@ -1484,7 +1484,7 @@ article .content .caption {
   font-display: swap;
   font-weight: 400;
   font-size: 0.92rem;
-  font-family: "Maple Mono Normal NL NF CN", "Noto Sans SC";
+  font-family: "Noto Sans SC";
   line-height: 1.725;
   text-rendering: geometricPrecision;
   text-align: center;
@@ -1650,7 +1650,7 @@ pre {
   border: 1px dotted #666;
   border-radius: 4px;
   font-size: 13px;
-  font-family: "Maple Mono Normal NL NF CN", "Fira Code", "Noto Sans SC", monospace;
+  font-family: "Fira Code", "Noto Sans SC", monospace;
   line-height: 22px;
   -webkit-border-radius: 4px;
 }
@@ -1664,7 +1664,7 @@ code {
   color: #333; /* 深灰色文字 */
   padding: 2px 4px; /* 较小的内边距 */
   border-radius: 3px; /* 轻微的圆角 */
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-family: "Fira Code", "Noto Sans SC", monospace;
   font-size: 85%; /* 较小的字体大小 */
   -webkit-border-radius: 3px;
 }
@@ -1674,7 +1674,7 @@ code {
   padding: 10px 15px;
   border-radius: 4px;
   background: #fafafa;
-  font-family: "Maple Mono Normal NL NF CN", "Fira Code", "Noto Sans SC", monospace;
+  font-family: "Fira Code", "Noto Sans SC", monospace;
   -webkit-border-radius: 4px;
 }
 .highlight figcaption {
@@ -1734,4 +1734,10 @@ code {
 }
 #header-post #actions {
   direction: ltr !important;
+}
+table,
+th,
+td {
+  font-size: 1em !important;
+  padding: 0.5em !important;
 }
