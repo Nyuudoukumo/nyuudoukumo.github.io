@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang=zh>
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+<link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="123456780: li r0, 10   # 这里是十进制的101: li r1, 02: li r2, 03: li r3, 14: add r1, r1, r35: add r2, r2, r16: bner0 r1, 47: bner0 r3, 7 继续执行上述的指令       题目  我们用(PC, r0, r1, r2, r3)的格式来记录寄存器的值 1234567891011&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一生一芯F4">
+<meta property="og:url" content="http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/index.html">
+<meta property="og:site_name" content="Nyuudoukumo">
+<meta property="og:description" content="123456780: li r0, 10   # 这里是十进制的101: li r1, 02: li r2, 03: li r3, 14: add r1, r1, r35: add r2, r2, r16: bner0 r1, 47: bner0 r3, 7 继续执行上述的指令       题目  我们用(PC, r0, r1, r2, r3)的格式来记录寄存器的值 1234567891011&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF3/%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C.png">
+<meta property="article:published_time" content="2026-01-17T12:57:04.000Z">
+<meta property="article:modified_time" content="2026-01-17T12:59:32.468Z">
+<meta property="article:author" content="Nyuudoukumo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF3/%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>一生一芯F4</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2026/01/05/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&text=一生一芯F4"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&is_video=false&description=一生一芯F4"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一生一芯F4&body=Check out this article: http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&name=一生一芯F4&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&t=一生一芯F4"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C%E4%B8%8A%E8%BF%B0%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">继续执行上述的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%9710%E4%BB%A5%E5%86%85%E7%9A%84%E5%A5%87%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-number">2.</span> <span class="toc-text">计算10以内的奇数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%8A%B6%E6%80%81%E6%9C%BA%E8%A7%86%E8%A7%92%E7%90%86%E8%A7%A3%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E7%94%B5%E8%B7%AF%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">从状态机视角理解数列求和电路的工作过程</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        一生一芯F4
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Nyuudoukumo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-17T12:57:04.000Z" class="dt-published" itemprop="datePublished">2026-01-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF/">一生一芯</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0: li r0, 10   # 这里是十进制的10</span><br><span class="line">1: li r1, 0</span><br><span class="line">2: li r2, 0</span><br><span class="line">3: li r3, 1</span><br><span class="line">4: add r1, r1, r3</span><br><span class="line">5: add r2, r2, r1</span><br><span class="line">6: bner0 r1, 4</span><br><span class="line">7: bner0 r3, 7</span><br></pre></td></tr></table></figure>
+<h2 id="继续执行上述的指令">继续执行上述的指令</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>我们用(PC, r0, r1, r2, r3)的格式来记录寄存器的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;PC r0 r1 r2 r3</span><br><span class="line">&gt;(0, 0, 0, 0, 0)   # 初始状态</span><br><span class="line">&gt;(1, 10, 0, 0, 0)  # 执行PC为0的指令后, r0更新为10, PC更新为下一条指令的位置</span><br><span class="line">&gt;(2, 10, 0, 0, 0)  # 执行PC为1的指令后, r1更新为0, PC更新为下一条指令的位置</span><br><span class="line">&gt;(3, 10, 0, 0, 0)  # 执行PC为2的指令后, r2更新为0, PC更新为下一条指令的位置</span><br><span class="line">&gt;(4, 10, 0, 0, 1)  # 执行PC为3的指令后, r3更新为1, PC更新为下一条指令的位置</span><br><span class="line">&gt;(5, 10, 1, 0, 1)  # 执行PC为4的指令后, r1更新为r1+r3, PC更新为下一条指令的位置</span><br><span class="line">&gt;(6, 10, 1, 1, 1)  # 执行PC为5的指令后, r2更新为r2+r1, PC更新为下一条指令的位置</span><br><span class="line">&gt;(4, 10, 1, 1, 1)  # 执行PC为6的指令后, 因r1不等于r0, 故PC更新为4</span><br><span class="line">&gt;(5, 10, 2, 1, 1)  # 执行PC为4的指令后, r1更新为r1+r3, PC更新为下一条指令的位置</span><br><span class="line">&gt;......</span><br></pre></td></tr></table></figure>
+<p>尝试继续执行指令, 记录寄存器的状态变化过程. 你现执行到最后时, 处理器处于什么样的状态? 上述数列的求和结果在哪个寄存器中?</p>
+</div></div><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(6, 10, 2, 3, 1)</span><br><span class="line">(4, 10, 2, 3, 1)</span><br><span class="line">(5, 10, 3, 3, 1)</span><br><span class="line">(6, 10, 3, 6, 1)</span><br><span class="line">(4, 10, 3, 6, 1)</span><br><span class="line">(5, 10, 4, 6, 1)</span><br><span class="line">(6, 10, 4, 10, 1)</span><br><span class="line">(4, 10, 4, 10, 1)</span><br><span class="line">(5, 10, 5, 10, 1)</span><br><span class="line">(6, 10, 5, 15, 1)</span><br><span class="line">(4, 10, 5, 10, 1)</span><br><span class="line">(5, 10, 6, 10, 1)</span><br><span class="line">(6, 10, 6, 21, 1)</span><br><span class="line">(4, 10, 6, 21, 1)</span><br><span class="line">(5, 10, 7, 21, 1)</span><br><span class="line">(6, 10, 7, 28, 1)</span><br><span class="line">(4, 10, 7, 28, 1)</span><br><span class="line">(5, 10, 8, 28, 1)</span><br><span class="line">(6, 10, 8, 36, 1)</span><br><span class="line">(4, 10, 8, 36, 1)</span><br><span class="line">(5, 10, 9, 36, 1)</span><br><span class="line">(6, 10, 9, 45, 1)</span><br><span class="line">(4, 10, 9, 45, 1)</span><br><span class="line">(5, 10, 10, 45, 1)</span><br><span class="line">(6, 10, 10, 55, 1)</span><br><span class="line">(7, 10, 10, 55, 1) # 执行PC为6的指令后, 因r1等于r0, 故PC更新为7</span><br><span class="line">(7, 10, 10, 55, 1) # 执行PC为7的指令后, 因r3不等于r0, 故PC更新为7</span><br><span class="line"># 此后在7循环</span><br></pre></td></tr></table></figure>
+<h2 id="计算10以内的奇数之和">计算10以内的奇数之和</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>尝试用上述指令编写一个程序, 求出10以内的奇数之和, 即计算<code>1+3+5+7+9</code>. 编写后, 尝试列出处理器状态的变化过程, 以此来检查你编写的程序是否正确.</p>
+</div></div><p>程序如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0: li r0, 9</span><br><span class="line">1: li r1, 1</span><br><span class="line">2: li r2, 0</span><br><span class="line">3: li r3, 2</span><br><span class="line">4: add r2, r2, r1</span><br><span class="line">5: add r1, r1, r3</span><br><span class="line">6: add r2, r2, r1</span><br><span class="line">7: bner0 r1, 5</span><br><span class="line">8: bner0 r3, 8</span><br></pre></td></tr></table></figure>
+<p>过程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">(0, 0, 0, 0, 0)</span><br><span class="line">(1, 9, 0, 0, 0)</span><br><span class="line">(2, 9, 1, 0, 0)</span><br><span class="line">(3, 9, 1, 0, 0)</span><br><span class="line">(4, 9, 1, 0, 2)</span><br><span class="line">(5, 9, 1, 1, 2)</span><br><span class="line">(6, 9, 3, 1, 2)</span><br><span class="line">(7, 9, 3, 4, 2)</span><br><span class="line">(5, 9, 3, 4, 2)</span><br><span class="line">(6, 9, 5, 4, 2)</span><br><span class="line">(7, 9, 5, 9, 2)</span><br><span class="line">(5, 9, 5, 9, 2)</span><br><span class="line">(6, 9, 7, 9, 2)</span><br><span class="line">(7, 9, 7, 16, 2)</span><br><span class="line">(5, 9, 7, 16, 2)</span><br><span class="line">(6, 9, 9, 16, 2)</span><br><span class="line">(7, 9, 9, 25, 2)</span><br><span class="line">(8, 9, 9, 25, 2) #之后在此循环</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">## 继续执行上述程序</span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/* 1 */ int main() {</span><br><span class="line">/* 2 */   int sum = 0;</span><br><span class="line">/* 3 */   int i = 1;</span><br><span class="line">/* 4 */   do {</span><br><span class="line">/* 5 */     sum = sum + i;</span><br><span class="line">/* 6 */     i = i + 1;</span><br><span class="line">/* 7 */   } while (i &lt;= 10);</span><br><span class="line">/* 8 */   printf("sum = %d\n", sum);</span><br><span class="line">/* 9 */   return 0;</span><br><span class="line">/* 10*/ }</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">```State Machine</span><br><span class="line">PC sum i</span><br><span class="line">(2, ?, ?)    # 初始状态</span><br><span class="line">(3, 0, ?)    # 执行PC为2的语句后, sum更新为0, PC更新为下一条语句的位置</span><br><span class="line">(5, 0, 1)    # 执行PC为3的语句后, i更新为1, PC更新为下一条语句的位置(第4行无有效操作, 跳过)</span><br><span class="line">(6, 1, 1)    # 执行PC为5的语句后, sum更新为sum + i, PC更新为下一条语句的位置</span><br><span class="line">(7, 1, 2)    # 执行PC为6的语句后, i更新为i + 1, PC更新为下一条语句的位置</span><br><span class="line">(5, 1, 2)    # 执行PC为7的语句后, 由于循环条件i &lt;= 10成立, 因此重新进入循环体</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>尝试继续执行上述代码, 记录状态的变化过程. 程序执行结束时, 程序处于什么样的状态?</p>
+</div></div><figure class="highlight plaintext"><figcaption><span>Machine</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">(6, 3, 2)</span><br><span class="line">(7, 3, 3)</span><br><span class="line">(5, 3, 3)</span><br><span class="line">(6, 6, 3)</span><br><span class="line">(7, 6, 4)</span><br><span class="line">(5, 6, 4)</span><br><span class="line">(6, 10, 4)</span><br><span class="line">(7, 10, 5)</span><br><span class="line">(5, 10, 5)</span><br><span class="line">(6, 15, 5)</span><br><span class="line">(7, 15, 6)</span><br><span class="line">(5, 15, 6)</span><br><span class="line">(6, 21, 6)</span><br><span class="line">(7, 21, 7)</span><br><span class="line">(5, 21, 7)</span><br><span class="line">(6, 28, 7)</span><br><span class="line">(7, 28, 8)</span><br><span class="line">(5, 28, 8)</span><br><span class="line">(6, 36, 8)</span><br><span class="line">(7, 36, 9)</span><br><span class="line">(5, 45, 9)</span><br><span class="line">(6, 45, 9)</span><br><span class="line">(7, 45, 10)</span><br><span class="line">(5, 45, 10)</span><br><span class="line">(6, 55, 10)</span><br><span class="line">(7, 55, 11)</span><br><span class="line">(8, 55, 11) # 执行PC为7的语句后, 由于循环条件i &lt;= 10不成立, 因此跳出循环体</span><br><span class="line">(9, 55, 11) </span><br><span class="line">(10, 55, 11)</span><br></pre></td></tr></table></figure>
+<h2 id="从状态机视角理解数列求和电路的工作过程">从状态机视角理解数列求和电路的工作过程</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>在上一小节中, 你已经通过寄存器和加法器搭建出一个简单数列求和电路, 用于计算<code>1+2+...+10</code>. 尝试列出电路状态的变化过程.</p>
+</div></div><p>假设左侧的寄存器为A，右侧的寄存器为B</p>
+<p><img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF3/%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C.png" alt="数列求和.png"></p>
+<pre><code class="language-State">A   B
+(0, 0) #初始状态
+(1, 0) 
+(2, 1)
+(3, 3)
+(4, 6)
+(5, 10)
+(6, 15)
+(7, 21)
+(8, 28)
+(9, 36)
+(10, 45)
+(11, 55)
+(11, 55) #往后保持在(11, 55)的状态
+</code></pre>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C%E4%B8%8A%E8%BF%B0%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">继续执行上述的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%9710%E4%BB%A5%E5%86%85%E7%9A%84%E5%A5%87%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-number">2.</span> <span class="toc-text">计算10以内的奇数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%8A%B6%E6%80%81%E6%9C%BA%E8%A7%86%E8%A7%92%E7%90%86%E8%A7%A3%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E7%94%B5%E8%B7%AF%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">从状态机视角理解数列求和电路的工作过程</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&text=一生一芯F4"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&is_video=false&description=一生一芯F4"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一生一芯F4&body=Check out this article: http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&title=一生一芯F4"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&name=一生一芯F4&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/17/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF4/&t=一生一芯F4"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    Nyuudoukumo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo">Github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
