@@ -19,8 +19,10 @@
 <meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E5%8F%96%E5%80%BC%E6%A8%A1%E5%9D%97.png">
 <meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_RAM.png">
 <meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU.png">
+<meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/2R1W_RAM.png">
+<meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/add_sCPU.png">
 <meta property="article:published_time" content="2026-01-19T13:33:04.000Z">
-<meta property="article:modified_time" content="2026-01-20T09:42:11.775Z">
+<meta property="article:modified_time" content="2026-01-22T09:42:04.018Z">
 <meta property="article:author" content="Nyuudoukumo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_ROM%E6%A8%A1%E5%9D%97.png">
@@ -241,7 +243,7 @@ mjx-container[display="true"] + br {
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8F%96%E5%80%BC%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">实现取值功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0GPR%E5%8F%8A%E5%85%B6%E5%86%99%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">实现GPR及其写入功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU"><span class="toc-number">3.</span> <span class="toc-text">实现仅支持li指令的sCPU</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8F%96%E5%80%BC%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">实现取值功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0GPR%E5%8F%8A%E5%85%B6%E5%86%99%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">实现GPR及其写入功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU"><span class="toc-number">3.</span> <span class="toc-text">实现仅支持li指令的sCPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0add%E6%8C%87%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">添加add指令</span></a></li></ol>
       </div>
     
   </span>
@@ -324,6 +326,20 @@ mjx-container[display="true"] + br {
 <div class="callout-content"><p>根据上文, 用数字电路实现<code>li</code>的指令周期涉及的各个部件, 并将它们连接起来. 实现后, 尝试让sCPU执行数列求和程序中的前几条<code>li</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.</p>
 </div></div><p>将之前构造的部件按下图的形式连接起来，其中，RAM的高位四位输入与第3位保持相同：<br>
 <img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU.png" alt="F5_仅支持li指令的sCPU.png"></p>
+<h2 id="添加add指令">添加add指令</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>根据上文, 在sCPU中添加<code>add</code>指令. 实现后, 尝试让sCPU继续执行数列求和程序中的几条<code>add</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.</p>
+</div></div><p>2读1写RAM如下所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/2R1W_RAM.png" alt="2R1W_RAM.png"></p>
+<p>添加加法电路后，sCPU如下图所示，为了避免连线杂乱，使用了<code>Tunnel</code>工具<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/add_sCPU.png" alt="add_sCPU.png"></p>
 
   </div>
 </article>
@@ -351,7 +367,7 @@ mjx-container[display="true"] + br {
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8F%96%E5%80%BC%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">实现取值功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0GPR%E5%8F%8A%E5%85%B6%E5%86%99%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">实现GPR及其写入功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU"><span class="toc-number">3.</span> <span class="toc-text">实现仅支持li指令的sCPU</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8F%96%E5%80%BC%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">实现取值功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0GPR%E5%8F%8A%E5%85%B6%E5%86%99%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">实现GPR及其写入功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU"><span class="toc-number">3.</span> <span class="toc-text">实现仅支持li指令的sCPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0add%E6%8C%87%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">添加add指令</span></a></li></ol>
       </div>
     
 
