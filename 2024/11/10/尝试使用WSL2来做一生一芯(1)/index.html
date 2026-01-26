@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="关于这个记录 博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。  关于WSL 适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。 WSL安装 我需要安装的是Ub">
+    <meta name="description" content="关于这个记录博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。   关于WSL适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。   WSL安装我需要安装的是Ub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="尝试使用WSL2来做一生一芯(1)">
 <meta property="og:url" content="http://example.com/2024/11/10/%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8WSL2%E6%9D%A5%E5%81%9A%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AF(1)/index.html">
 <meta property="og:site_name" content="Nyuudoukumo">
-<meta property="og:description" content="关于这个记录 博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。  关于WSL 适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。 WSL安装 我需要安装的是Ub">
+<meta property="og:description" content="关于这个记录博主打算尝试使用WSL2来完成一生一芯项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。   关于WSL适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU&#x2F;Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。   WSL安装我需要安装的是Ub">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/wslConfig/neofetch.png">
 <meta property="og:image" content="http://example.com/images/wslConfig/neovim.png">
@@ -285,101 +285,62 @@ mjx-container[display="true"] + br {
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="关于这个记录">关于这个记录</h2>
-<p>博主打算尝试使用WSL2来完成<a target="_blank" rel="noopener" href="https://ysyx.oscc.cc/">一生一芯</a>项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。<br>
-<img src="/images/wslConfig/neofetch.png" alt="WSL"></p>
-<h2 id="关于WSL">关于WSL</h2>
-<p>适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。</p>
-<h2 id="WSL安装">WSL安装</h2>
-<p>我需要安装的是Ubuntu-22.04，使用Windows Terminal执以下命令：</p>
+    <h2 id="关于这个记录"><a href="#关于这个记录" class="headerlink" title="关于这个记录"></a>关于这个记录</h2><p>博主打算尝试使用WSL2来完成<a target="_blank" rel="noopener" href="https://ysyx.oscc.cc/">一生一芯</a>项目，故做此记录。但因为是事后才进行记录的，因此部分步骤可能会有所遗漏，仅供参考。<br><img src="/images/wslConfig/neofetch.png" alt="WSL">  </p>
+<h2 id="关于WSL"><a href="#关于WSL" class="headerlink" title="关于WSL"></a>关于WSL</h2><p>适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。  </p>
+<h2 id="WSL安装"><a href="#WSL安装" class="headerlink" title="WSL安装"></a>WSL安装</h2><p>我需要安装的是Ubuntu-22.04，使用Windows Terminal执以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install -d Ubuntu-22.04</span><br></pre></td></tr></table></figure>
-<p>安装步骤具体参考Micorsoft的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">文档</a>。</p>
-<h2 id="Ubuntu配置">Ubuntu配置</h2>
-<h3 id="更改APT源">更改APT源</h3>
-<p>我使用的是<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学的APT源</a></p>
-<h3 id="安装git">安装git</h3>
-<p>执行命令</p>
+<p>安装步骤具体参考Micorsoft的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">文档</a>。  </p>
+<h2 id="Ubuntu配置"><a href="#Ubuntu配置" class="headerlink" title="Ubuntu配置"></a>Ubuntu配置</h2><h3 id="更改APT源"><a href="#更改APT源" class="headerlink" title="更改APT源"></a>更改APT源</h3><p>我使用的是<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学的APT源</a>  </p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>执行命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<h3 id="配置魔法">配置魔法</h3>
-<p>因为只是初步使用，因此我的方案是直接使用windows<br>
-内的clash。我参考的是<a target="_blank" rel="noopener" href="https://eastmonster.github.io/2022/10/05/clash-config-in-wsl/">这篇文章</a>，如何配置这里只做简单介绍。</p>
+<h3 id="配置魔法"><a href="#配置魔法" class="headerlink" title="配置魔法"></a>配置魔法</h3><p>因为只是初步使用，因此我的方案是直接使用windows<br>内的clash。我参考的是<a target="_blank" rel="noopener" href="https://eastmonster.github.io/2022/10/05/clash-config-in-wsl/">这篇文章</a>，如何配置这里只做简单介绍。</p>
 <ol>
-<li>
-<p>将windows中的clash的<code>允许局域网</code>选项设置为开启</p>
-</li>
-<li>
-<p>回到Ubuntu,在<code>~/.bashrc</code>中添加</p>
+<li>将windows中的clash的<code>允许局域网</code>选项设置为开启  </li>
+<li><p>回到Ubuntu,在<code>~/.bashrc</code>中添加  </p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxy_port=</span><br><span class="line">hostip=$(<span class="built_in">cat</span> /etc/resolv.conf | grep -oP <span class="string">'(?&lt;=nameserver\ ).*'</span>)</span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line"><span class="built_in">export</span> all_proxy=<span class="string">"socks5://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line">git config --global http.proxy <span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br><span class="line">git config --global https.proxy <span class="string">"http://<span class="variable">${hostip}</span>:<span class="variable">${proxy_port}</span>"</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>保存后使用<code>source ~/.bashrc</code>命令使配置生效</p>
+<li><p>保存后使用<code>source ~/.bashrc</code>命令使配置生效  </p>
 </li>
 </ol>
-<h3 id="配置neovim">配置neovim</h3>
-<h4 id="安装">安装</h4>
-<p>因为apt源默认的安装版本比较老，因此如果需要使用新的版本不能直接使用使用<code>sudo apt install</code>进行安装。<br>
-新版的neovim可以在<a target="_blank" rel="noopener" href="https://github.com/neovim/neovim">官方仓库</a>中获取。<br>
-或者通过通过配置源来获取(参考的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/SteveForever/article/details/124896792">这篇文章</a>)，步骤如下：</p>
+<h3 id="配置neovim"><a href="#配置neovim" class="headerlink" title="配置neovim"></a>配置neovim</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>因为apt源默认的安装版本比较老，因此如果需要使用新的版本不能直接使用使用<code>sudo apt install</code>进行安装。<br>新版的neovim可以在<a target="_blank" rel="noopener" href="https://github.com/neovim/neovim">官方仓库</a>中获取。<br>或者通过通过配置源来获取(参考的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/SteveForever/article/details/124896792">这篇文章</a>)，步骤如下：</p>
 <ol>
-<li>
-<p>添加源</p>
+<li><p>添加源</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stable version</span></span><br><span class="line">sudo add-apt-repository ppa:neovim-ppa/stable</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>安装</p>
+<li><p>安装</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install neovim</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="插件和个性化">插件和个性化</h4>
-<p>因为打算趁机学习vim，因此顺便把neovim也配置了。neovim的插件等配置参考的是youtube上的一个<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=cGxm4tvF5E8&amp;list=PLsz00TDipIffGKMW4hmzmwXTvARXyJMn8">视频教程</a>。<br>
-<a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo/NvimConfig">我的配置</a>放在我的github中。后面写一篇neovim的配置记录(大概)。<br>
-<img src="/images/wslConfig/neovim.png" alt="neovim"></p>
-<h2 id="一生一芯的部分环境配置">一生一芯的部分环境配置</h2>
-<h3 id="关于GUI">关于GUI</h3>
-<p><strong>这一步是非必须的，WSL2本身已经提供了GUI支持</strong><br>
-微软的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps">WSL文档</a>中提到WSL支持运行 Linux GUI 应用程序（X11 和 Wayland），提供了完全集成的桌面体验。</p>
-<h3 id="配置GUI">配置GUI</h3>
-<p>参考了<a target="_blank" rel="noopener" href="https://steinslab.io/archives/2082#3_X11_Forwarding">这篇文章</a><br>
-配置步骤:</p>
+<h4 id="插件和个性化"><a href="#插件和个性化" class="headerlink" title="插件和个性化"></a>插件和个性化</h4><p>因为打算趁机学习vim，因此顺便把neovim也配置了。neovim的插件等配置参考的是youtube上的一个<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=cGxm4tvF5E8&amp;list=PLsz00TDipIffGKMW4hmzmwXTvARXyJMn8">视频教程</a>。<br><a target="_blank" rel="noopener" href="https://github.com/Nyuudoukumo/NvimConfig">我的配置</a>放在我的github中。后面写一篇neovim的配置记录(大概)。<br><img src="/images/wslConfig/neovim.png" alt="neovim"></p>
+<h2 id="一生一芯的部分环境配置"><a href="#一生一芯的部分环境配置" class="headerlink" title="一生一芯的部分环境配置"></a>一生一芯的部分环境配置</h2><h3 id="关于GUI"><a href="#关于GUI" class="headerlink" title="关于GUI"></a>关于GUI</h3><p><strong>这一步是非必须的，WSL2本身已经提供了GUI支持</strong><br>微软的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps">WSL文档</a>中提到WSL支持运行 Linux GUI 应用程序（X11 和 Wayland），提供了完全集成的桌面体验。</p>
+<h3 id="配置GUI"><a href="#配置GUI" class="headerlink" title="配置GUI"></a>配置GUI</h3><p>参考了<a target="_blank" rel="noopener" href="https://steinslab.io/archives/2082#3_X11_Forwarding">这篇文章</a><br>配置步骤:</p>
 <ol>
-<li>
-<p>设置DISPLAY转发<br>
-在<code>~/.bashrc</code>中添加以下代码，保存后<code>source ~/.bashrc</code></p>
+<li><p>设置DISPLAY转发<br>在<code>~/.bashrc</code>中添加以下代码，保存后<code>source ~/.bashrc</code></p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0</span><br><span class="line">export LIBGL_ALWAYS_INDIRECT=1</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>在Windows中安装Xming，这里不做具体说明，详细STFW</p>
+<li><p>在Windows中安装Xming，这里不做具体说明，详细STFW</p>
 </li>
 </ol>
-<h3 id="参考PA0安装工具">参考PA0安装工具</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential    # build-essential packages, include binary utilities, gcc, make, and so on</span><br><span class="line">apt-get install man                # on-line reference manual</span><br><span class="line">apt-get install gcc-doc            # on-line reference manual for gcc</span><br><span class="line">apt-get install gdb                # GNU debugger</span><br><span class="line">apt-get install git                # revision control system</span><br><span class="line">apt-get install libreadline-dev    # a library used later</span><br><span class="line">apt-get install libsdl2-dev        # a library used later</span><br></pre></td></tr></table></figure>
-<h3 id="verilator配置">verilator配置</h3>
-<p>一生一芯讲义中提到需要通过git安装<code>5.008</code>版本，因此我们参考<a target="_blank" rel="noopener" href="https://verilator.org/guide/latest/install.html#git-quick-install">verilator官方文档</a>进行安装。</p>
+<h3 id="参考PA0安装工具"><a href="#参考PA0安装工具" class="headerlink" title="参考PA0安装工具"></a>参考PA0安装工具</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential    # build-essential packages, include binary utilities, gcc, make, and so on</span><br><span class="line">apt-get install man                # on-line reference manual</span><br><span class="line">apt-get install gcc-doc            # on-line reference manual for gcc</span><br><span class="line">apt-get install gdb                # GNU debugger</span><br><span class="line">apt-get install git                # revision control system</span><br><span class="line">apt-get install libreadline-dev    # a library used later</span><br><span class="line">apt-get install libsdl2-dev        # a library used later</span><br></pre></td></tr></table></figure>
+<h3 id="verilator配置"><a href="#verilator配置" class="headerlink" title="verilator配置"></a>verilator配置</h3><p>一生一芯讲义中提到需要通过git安装<code>5.008</code>版本，因此我们参考<a target="_blank" rel="noopener" href="https://verilator.org/guide/latest/install.html#git-quick-install">verilator官方文档</a>进行安装。</p>
 <p>配置步骤:</p>
 <ol>
-<li>
-<p>将verilator clone到本地</p>
+<li><p>将verilator clone到本地</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/verilator/verilator</span><br><span class="line">cd verilator</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>切换到<code>5.008</code>分支</p>
+<li><p>切换到<code>5.008</code>分支</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout v{5.008}</span><br><span class="line">unset VERILATOR_ROOT  # For bash(注意这里仅针对bash环境，其他环境具体参考文档)</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>安装构建所需的工具</p>
+<li><p>安装构建所需的工具</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git help2man perl python3 make</span><br><span class="line">sudo apt-get install g++  # Alternatively, clang</span><br><span class="line">sudo apt-get install libgz  # Non-Ubuntu (ignore if gives error)</span><br><span class="line">sudo apt-get install libfl2  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install libfl-dev  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install zlibc zlib1g zlib1g-dev  # Ubuntu only (ignore if gives error)</span><br><span class="line">sudo apt-get install git autoconf flex bison</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选安装</span></span><br><span class="line">sudo apt-get install perl-doc # for nicely rendered command line help when running Verilator</span><br><span class="line">sudo apt-get install ccache  # If present at build, needed for run</span><br><span class="line">sudo apt-get install mold  # If present at build, needed for run</span><br><span class="line">sudo apt-get install libgoogle-perftools-dev numactl</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>构建Verilator</p>
+<li><p>构建Verilator</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里我使用第一种`make`方法报错，尝试第二种成功</span></span><br><span class="line">autoconf         # Create ./configure script</span><br><span class="line">./configure      # Configure and create Makefile</span><br><span class="line">make -j `nproc`  # Build Verilator itself (if error, try just 'make')</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>尝试运行nvboard中的example</p>
+<li><p>尝试运行nvboard中的example</p>
 </li>
 </ol>
-<p><a target="_blank" rel="noopener" href="https://github.com/NJU-ProjectN/nvboard">NVBoard</a>(NJU Virtual Board)是基于SDL开发的虚拟FPGA开发板，可以在Verilator仿真环境中模拟FPGA，支持LED，七段数码管，拨码开关，UART，键盘和VGA。<br>
-如图，根据NVBoard配置后运行成功<br>
-<img src="/images/wslConfig/nvboard.png" alt="nvboard"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/NJU-ProjectN/nvboard">NVBoard</a>(NJU Virtual Board)是基于SDL开发的虚拟FPGA开发板，可以在Verilator仿真环境中模拟FPGA，支持LED，七段数码管，拨码开关，UART，键盘和VGA。<br>如图，根据NVBoard配置后运行成功<br><img src="/images/wslConfig/nvboard.png" alt="nvboard"></p>
 
   </div>
 </article>

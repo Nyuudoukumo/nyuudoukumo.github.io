@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="通过RTFM初步了解RISC-V指令集       题目  查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:  PC寄存器的位宽是多少? GPR共有多少个? 每个GPR的位宽是多少? R[0]和sISA的R[0]有什么不同之处? 指令编码的位宽是多少? 指令有多少种基本格式? 在指令的基本格式中, 需要多少位来表示一个GPR">
+    <meta name="description" content="通过RTFM初步了解RISC-V指令集 [!题目]查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:  PC寄存器的位宽是多少? GPR共有多少个? 每个GPR的位宽是多少? R[0]和sISA的R[0]有什么不同之处? 指令编码的位宽是多少? 指令有多少种基本格式? 在指令的基本格式中, 需要多少位来表示一个GPR? 为什么">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一生一芯F6">
 <meta property="og:url" content="http://example.com/2026/01/24/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF6/index.html">
 <meta property="og:site_name" content="Nyuudoukumo">
-<meta property="og:description" content="通过RTFM初步了解RISC-V指令集       题目  查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:  PC寄存器的位宽是多少? GPR共有多少个? 每个GPR的位宽是多少? R[0]和sISA的R[0]有什么不同之处? 指令编码的位宽是多少? 指令有多少种基本格式? 在指令的基本格式中, 需要多少位来表示一个GPR">
+<meta property="og:description" content="通过RTFM初步了解RISC-V指令集 [!题目]查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:  PC寄存器的位宽是多少? GPR共有多少个? 每个GPR的位宽是多少? R[0]和sISA的R[0]有什么不同之处? 指令编码的位宽是多少? 指令有多少种基本格式? 在指令的基本格式中, 需要多少位来表示一个GPR? 为什么">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-24T10:30:51.000Z">
 <meta property="article:modified_time" content="2026-01-24T10:32:14.968Z">
@@ -281,16 +281,8 @@ mjx-container[display="true"] + br {
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="通过RTFM初步了解RISC-V指令集">通过RTFM初步了解RISC-V指令集</h2>
-
-<div class="callout" data-callout="题目">
-<div class="callout-title">
-<div class="callout-title-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
-</div>
-<div class="callout-title-inner">题目</div>
-</div>
-<div class="callout-content"><p>查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:</p>
+    <h2 id="通过RTFM初步了解RISC-V指令集"><a href="#通过RTFM初步了解RISC-V指令集" class="headerlink" title="通过RTFM初步了解RISC-V指令集"></a>通过RTFM初步了解RISC-V指令集</h2><blockquote>
+<p>[!题目]<br>查阅RISC-V手册的目录, 你发现RV32I在哪一章进行介绍? 尝试在该章节中查阅RV32I的相关内容, 回答下列问题:</p>
 <ol>
 <li>PC寄存器的位宽是多少?</li>
 <li>GPR共有多少个? 每个GPR的位宽是多少?</li>
@@ -300,7 +292,8 @@ mjx-container[display="true"] + br {
 <li><code>add</code>指令的格式具体是什么?</li>
 <li>还有一种基础指令集称为RV32E, 它和RV32I有什么不同?</li>
 </ol>
-</div></div><p>RV32I在第2章<code>RV32I Base Integer Instruction Set, Version 2.1</code>进行介绍：</p>
+</blockquote>
+<p>RV32I在第2章<code>RV32I Base Integer Instruction Set, Version 2.1</code>进行介绍：</p>
 <ol>
 <li>PC寄存器的位宽是32.</li>
 <li>GPR共有31个(<code>x1</code>-<code>x31</code>)，每个GPR的位宽为32.</li>
@@ -310,8 +303,8 @@ mjx-container[display="true"] + br {
 <li><code>add</code>指令的具体格式为：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">31      25 24     20 19     15 14   12 11     7 6        0</span><br><span class="line">| 0000000 |   rs2   |   rs1   |  000  |   rd   | 0110011 |   </span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>RV32E为为资源受限的嵌入式设备设计的RV32I简化版本，唯一的变化是将整数寄存器数量减少到16个。</li>
+<ol>
+<li>RV32E为为资源受限的嵌入式设备设计的RV32I简化版本，唯一的变化是将整数寄存器数量减少到16个。  </li>
 </ol>
 
   </div>
