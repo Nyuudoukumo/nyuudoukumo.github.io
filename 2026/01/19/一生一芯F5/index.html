@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="实现取值功能 [!题目]通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格.    搭建ROM，因为sCPU的PC位宽为4，字长为8，故ROM的深度为16，宽度为8，电路如下图所示：   使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：   实现GPR及其写入功能 [!题目]在寄存器的基础上搭">
+    <meta name="description" content="实现取值功能       题目  通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格. 搭建ROM，因为sCPU的PC位宽为4，字长为8，故ROM的深度为16，宽度为8，电路如下图所示：  使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：  实现GPR及其写入功能       题目  在寄存器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一生一芯F5">
 <meta property="og:url" content="http://example.com/2026/01/19/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/index.html">
 <meta property="og:site_name" content="Nyuudoukumo">
-<meta property="og:description" content="实现取值功能 [!题目]通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格.    搭建ROM，因为sCPU的PC位宽为4，字长为8，故ROM的深度为16，宽度为8，电路如下图所示：   使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：   实现GPR及其写入功能 [!题目]在寄存器的基础上搭">
+<meta property="og:description" content="实现取值功能       题目  通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格. 搭建ROM，因为sCPU的PC位宽为4，字长为8，故ROM的深度为16，宽度为8，电路如下图所示：  使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：  实现GPR及其写入功能       题目  在寄存器">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_ROM%E6%A8%A1%E5%9D%97.png">
 <meta property="og:image" content="http://example.com/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E5%8F%96%E6%8C%87%E6%A8%A1%E5%9D%97.png">
@@ -294,47 +294,108 @@ mjx-container[display="true"] + br {
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="实现取值功能"><a href="#实现取值功能" class="headerlink" title="实现取值功能"></a>实现取值功能</h2><blockquote>
-<p>[!题目]<br>通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格.  </p>
-</blockquote>
-<p>搭建ROM，因为sCPU的PC位宽为<code>4</code>，字长为<code>8</code>，故ROM的深度为<code>16</code>，宽度为<code>8</code>，电路如下图所示：<br><img src="/images/一生一芯F5/F5_ROM模块.png" alt="F5_ROM模块.png">  </p>
-<p>使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：<br><img src="/images/一生一芯F5/F5_取指模块.png" alt="F5_取指模块.png">  </p>
-<h2 id="实现GPR及其写入功能"><a href="#实现GPR及其写入功能" class="headerlink" title="实现GPR及其写入功能"></a>实现GPR及其写入功能</h2><blockquote>
-<p>[!题目]<br>在寄存器的基础上搭建一个RAM, 从而实现GPR的写入功能. 你需要根据你的理解来确定RAM的规格.  </p>
-</blockquote>
-<p>RAM的规格为<code>4x*8</code>,电路如图所示：<br><img src="/images/一生一芯F5/F5_RAM.png" alt="F5_RAM.png">  </p>
-<h2 id="实现仅支持li指令的sCPU"><a href="#实现仅支持li指令的sCPU" class="headerlink" title="实现仅支持li指令的sCPU"></a>实现仅支持li指令的sCPU</h2><blockquote>
-<p>[!题目]<br>根据上文, 用数字电路实现<code>li</code>的指令周期涉及的各个部件, 并将它们连接起来. 实现后, 尝试让sCPU执行数列求和程序中的前几条<code>li</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.  </p>
-</blockquote>
-<p>将之前构造的部件按下图的形式连接起来，其中，RAM的高位四位输入与第3位保持相同：<br><img src="/images/一生一芯F5/F5_仅支持li指令的sCPU.png" alt="F5_仅支持li指令的sCPU.png">  </p>
-<h2 id="添加add指令"><a href="#添加add指令" class="headerlink" title="添加add指令"></a>添加add指令</h2><blockquote>
-<p>[!题目]<br>根据上文, 在sCPU中添加<code>add</code>指令. 实现后, 尝试让sCPU继续执行数列求和程序中的几条<code>add</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.</p>
-</blockquote>
-<p>2读1写RAM如下所示：<br><img src="/images/一生一芯F5/F5_2R1W_RAM.png" alt="F5_2R1W_RAM.png">  </p>
-<p>添加加法电路后，sCPU如下图所示，为了避免连线杂乱，使用了<code>Tunnel</code>工具<br><img src="/images/一生一芯F5/F5_add_sCPU.png" alt="F5_add_sCPU.png">  </p>
-<h2 id="添加bner0指令"><a href="#添加bner0指令" class="headerlink" title="添加bner0指令"></a>添加bner0指令</h2><blockquote>
-<p>[!题目]<br>根据上文, 在sCPU中添加<code>bner0</code>指令. 实现后, 尝试让sCPU执行完整的数列求和程序, 如果你的实现正确, 你应该能看到PC最终为<code>7</code>, 且在某GPR中存放求和结果<code>55</code>.  </p>
-</blockquote>
-<p>添加<code>bner0</code>指令支持后的sCPU如下图所示：<br><img src="/images/一生一芯F5/F5_li_add_benr0_sCPU.png" alt="F5_li_add_benr0_sCPU.png">  </p>
-<p>其中运行程序后可以观察到最后的<code>R2</code>寄存器存储了最后结果<code>55(0b00110111)</code>：<br><img src="/images/一生一芯F5/F5_li_add_benr0_sCPU.png" alt="F5_数列求和结果1.png">  </p>
-<h2 id="计算10以内的奇数之和"><a href="#计算10以内的奇数之和" class="headerlink" title="计算10以内的奇数之和"></a>计算10以内的奇数之和</h2><blockquote>
-<p>[!题目]<br>编写一段指令序列, 计算10以内的奇数之和, 即<code>1+3+5+7+9</code>. 然后尝试用你设计的sCPU指令这段指令序列, 检查运行结果是否符合预期.<br>完成后, 你对计算机的”存储程序”思想有什么认识?</p>
-</blockquote>
-<p>程序如下：  </p>
+    <h2 id="实现取值功能">实现取值功能</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>通过多路选择器实现一个ROM, 并在其中存放数列求和的指令序列, 然后通过PC寄存器取出指令. 你需要根据你的理解来确定ROM的规格.</p>
+</div></div><p>搭建ROM，因为sCPU的PC位宽为<code>4</code>，字长为<code>8</code>，故ROM的深度为<code>16</code>，宽度为<code>8</code>，电路如下图所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_ROM%E6%A8%A1%E5%9D%97.png" alt="F5_ROM模块.png"></p>
+<p>使用一个4位寄存器作为PC寄存器，与ROM连接形成取值模块，如下图所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E5%8F%96%E6%8C%87%E6%A8%A1%E5%9D%97.png" alt="F5_取指模块.png"></p>
+<h2 id="实现GPR及其写入功能">实现GPR及其写入功能</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>在寄存器的基础上搭建一个RAM, 从而实现GPR的写入功能. 你需要根据你的理解来确定RAM的规格.</p>
+</div></div><p>RAM的规格为<code>4x*8</code>,电路如图所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_RAM.png" alt="F5_RAM.png"></p>
+<h2 id="实现仅支持li指令的sCPU">实现仅支持li指令的sCPU</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>根据上文, 用数字电路实现<code>li</code>的指令周期涉及的各个部件, 并将它们连接起来. 实现后, 尝试让sCPU执行数列求和程序中的前几条<code>li</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.</p>
+</div></div><p>将之前构造的部件按下图的形式连接起来，其中，RAM的高位四位输入与第3位保持相同：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E4%BB%85%E6%94%AF%E6%8C%81li%E6%8C%87%E4%BB%A4%E7%9A%84sCPU.png" alt="F5_仅支持li指令的sCPU.png"></p>
+<h2 id="添加add指令">添加add指令</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>根据上文, 在sCPU中添加<code>add</code>指令. 实现后, 尝试让sCPU继续执行数列求和程序中的几条<code>add</code>指令, 并观察电路中GPR的状态是否与ISA的状态一致.</p>
+</div></div><p>2读1写RAM如下所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_2R1W_RAM.png" alt="F5_2R1W_RAM.png"></p>
+<p>添加加法电路后，sCPU如下图所示，为了避免连线杂乱，使用了<code>Tunnel</code>工具<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_add_sCPU.png" alt="F5_add_sCPU.png"></p>
+<h2 id="添加bner0指令">添加bner0指令</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>根据上文, 在sCPU中添加<code>bner0</code>指令. 实现后, 尝试让sCPU执行完整的数列求和程序, 如果你的实现正确, 你应该能看到PC最终为<code>7</code>, 且在某GPR中存放求和结果<code>55</code>.</p>
+</div></div><p>添加<code>bner0</code>指令支持后的sCPU如下图所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_li_add_benr0_sCPU.png" alt="F5_li_add_benr0_sCPU.png"></p>
+<p>其中运行程序后可以观察到最后的<code>R2</code>寄存器存储了最后结果<code>55(0b00110111)</code>：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_li_add_benr0_sCPU.png" alt="F5_数列求和结果1.png"></p>
+<h2 id="计算10以内的奇数之和">计算10以内的奇数之和</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>编写一段指令序列, 计算10以内的奇数之和, 即<code>1+3+5+7+9</code>. 然后尝试用你设计的sCPU指令这段指令序列, 检查运行结果是否符合预期.<br>
+完成后, 你对计算机的"存储程序"思想有什么认识?</p>
+</div></div><p>程序如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0: li r0, 9</span><br><span class="line">1: li r1, 1</span><br><span class="line">2: li r2, 0</span><br><span class="line">3: li r3, 2</span><br><span class="line">4: add r2, r2, r1</span><br><span class="line">5: add r1, r1, r3</span><br><span class="line">6: add r2, r2, r1</span><br><span class="line">7: bner0 r1, 5</span><br><span class="line">8: bner0 r3, 8</span><br></pre></td></tr></table></figure>
-<p>指令序列如下：  </p>
+<p>指令序列如下：</p>
 <figure class="highlight plaintext"><figcaption><span>Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">10 00 1001</span><br><span class="line">10 01 0001</span><br><span class="line">10 10 0000</span><br><span class="line">10 11 0010</span><br><span class="line">00 10 10 01</span><br><span class="line">00 01 01 11</span><br><span class="line">00 10 10 01</span><br><span class="line">11 0101 01</span><br><span class="line">11 1000 11</span><br></pre></td></tr></table></figure>
-<p>最终<code>R2</code>寄存器保存的值为<code>25(0b00011001)</code>，如下图所示：<br><img src="/images/一生一芯F5/F5_数列求和结果2.png" alt="F5_数列求和结果2.png"><br>存储使得用户可以方便修改cpu需要执行的任务。  </p>
-<h2 id="添加新指令"><a href="#添加新指令" class="headerlink" title="添加新指令"></a>添加新指令</h2><blockquote>
-<p>[!题目]<br>尝试为sISA添加一条新指令<code>out rs</code>, 执行该指令后, 会将<code>R[rs]</code>以十六进制的形式输出到七段数码管. 你可以自行决定这条指令的编码.然后, 在sCPU中实现<code>out</code>指令, 并修改数列求和程序, 使得在计算出结果后, 能在七段数码管中显示计算结果.  </p>
-</blockquote>
-<p>指令格式如下：</p>
+<p>最终<code>R2</code>寄存器保存的值为<code>25(0b00011001)</code>，如下图所示：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E7%BB%93%E6%9E%9C2.png" alt="F5_数列求和结果2.png"><br>
+存储使得用户可以方便修改cpu需要执行的任务。</p>
+<h2 id="添加新指令">添加新指令</h2>
+
+<div class="callout" data-callout="题目">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+</div>
+<div class="callout-title-inner">题目</div>
+</div>
+<div class="callout-content"><p>尝试为sISA添加一条新指令<code>out rs</code>, 执行该指令后, 会将<code>R[rs]</code>以十六进制的形式输出到七段数码管. 你可以自行决定这条指令的编码.然后, 在sCPU中实现<code>out</code>指令, 并修改数列求和程序, 使得在计算出结果后, 能在七段数码管中显示计算结果.</p>
+</div></div><p>指令格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 7  6 5  4 3   2 1   0</span><br><span class="line">+----+----+-----+-----+</span><br><span class="line">| 01 |   xxxx   | rs |    out rs</span><br><span class="line">+----+----+-----+-----+</span><br></pre></td></tr></table></figure>
-<p>我们对上一问的程序稍作修改，如下：  </p>
+<p>我们对上一问的程序稍作修改，如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0: li r0, 9</span><br><span class="line">1: li r1, 1</span><br><span class="line">2: li r2, 0</span><br><span class="line">3: li r3, 2</span><br><span class="line">4: add r2, r2, r1</span><br><span class="line">5: add r1, r1, r3</span><br><span class="line">6: add r2, r2, r1</span><br><span class="line">7: bner0 r1, 5</span><br><span class="line">8: out r2 #结果存放在r2寄存器，所以我们查看r2</span><br><span class="line">9: bner0 r3, 9</span><br></pre></td></tr></table></figure>
-<p>指令序列如下：  </p>
+<p>指令序列如下：</p>
 <figure class="highlight plaintext"><figcaption><span>Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">10 00 1001</span><br><span class="line">10 01 0001</span><br><span class="line">10 10 0000</span><br><span class="line">10 11 0010</span><br><span class="line">00 10 10 01</span><br><span class="line">00 01 01 11</span><br><span class="line">00 10 10 01</span><br><span class="line">11 0101 01</span><br><span class="line">01 0000 10</span><br><span class="line">11 1001 11</span><br></pre></td></tr></table></figure>
-<p>电路图即仿真结果如下，可以看到正确显示求和结果的16进制数<code>0x19</code>，即十进制的25：<br><img src="/images/一生一芯F5/F5_out_sCPU.png" alt="F5_out_sCPU.png">  </p>
+<p>电路图即仿真结果如下，可以看到正确显示求和结果的16进制数<code>0x19</code>，即十进制的25：<br>
+<img src="/images/%E4%B8%80%E7%94%9F%E4%B8%80%E8%8A%AFF5/F5_out_sCPU.png" alt="F5_out_sCPU.png"></p>
 
   </div>
 </article>
